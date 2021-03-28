@@ -1,0 +1,18 @@
+cd /etc/supervisor/conf.d/
+sudo nano program.conf
+sudo nano /etc/supervisor/conf.d/hdjs.conf
+
+[program:Program]
+directory = /home/chif/{program_folder}
+command = {command_for_executing}
+user = chif
+autostart = true
+autorestart = true
+startretries = 20
+stdout_logfile=/var/log/supervisor/Program.log
+
+sudo supervisorctl update all
+sudo supervisorctl reread all
+sudo supervisorctl reload all
+sudo supervisorctl restart all
+sudo supervisorctl status all

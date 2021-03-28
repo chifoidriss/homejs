@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDjs</title>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1>
+            Hé {{ title }}
+        </h1>
+        <h1>
+            Salut {{ nom }}
+        </h1>
+        <h1>
+            {{ fun("Idriss", 12) }}
+        </h1>
+
+        <div class="form-group">
+            <input type="text" h-model="title" class="form-control">
+            <label>{{ nom }}</label>
+        </div>
+
+        <div class="row">
+            <!-- <div class="col" i-parcourir="personne dans personnes">
+                <affiche>personne.prenom</affiche>
+                <affiche>personne.nom</affiche>
+            </div> -->
+
+            <!-- <repeter elements="personne dans personnes">
+                <div class="col-3">
+                    <div class="card card-body">
+                        <affiche>personne.prenom</affiche>
+                        <affiche>personne.nom</affiche>
+                    </div>
+                </div>
+            </repeter> -->
+            
+        </div>
+        <hr>
+
+        <div class="bg-light border p-2" h-include="personnels">
+            
+        </div>
+        
+        <div class="bg-light- border p-2 mt-4">
+            <div class="row">
+                <div class="col-12">
+                    <h5>Liste des noms</h5>
+                </div>
+                <div class="col-3" h-repeat="data in noms">
+                    <div class="card text-center">
+                        <div class="card-header">
+                            {{ $data.toUpperCase() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col" h-if="personne">
+                Salut les personnes existent bien ici.
+            </div>
+        </div>
+    </div>
+
+    <script src="js/directives.names.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

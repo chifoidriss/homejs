@@ -1,0 +1,12 @@
+DirectoryIndex index.php index.html
+
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+#---- Ne pas lister le contenu du repertoire ----
+IndexIgnore *
+
+RewriteEngine On
+RewriteRule ^([\w\s]+)$ index.html?page=$1
