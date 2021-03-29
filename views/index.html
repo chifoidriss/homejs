@@ -1,0 +1,35 @@
+<div class="container mt-3">
+    <h1>
+        Welcome {{ title }}
+    </h1>
+
+    <div class="form-group">
+        <input type="text" h-model="title" class="form-control">
+        <label>{{ title }}</label>
+    </div>
+
+    <!-- <div h-include="personnels"></div> -->
+    
+    #include(personnels)
+    
+    <div class="bg-light- border p-2 mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h5>Liste des noms</h5>
+            </div>
+            <div class="col-3" h-repeat="data in noms">
+                <div class="card text-center">
+                    <div class="card-header">
+                        {{ $data.toUpperCase() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col" h-if="personne">
+            Salut les personnes existent bien ici.
+        </div>
+    </div>
+</div>

@@ -1,7 +1,21 @@
+const routes = [
+    {
+        name: 'home',
+        template: 'views/home',
+    },
+    {
+        name: 'login',
+        template: 'views/login',
+    },
+    {
+        name: 'register',
+        template: 'views/register',
+    }
+]
 
 var title = "Pavel"
 var nom = "Camel Léonce"
-var a = {value: 15}
+var a = { value: 15 }
 
 var personnes = [
     {
@@ -28,14 +42,14 @@ var personnes = [
             sexe: 'Féminin'
         }
     },
-    {
-        nom: "DJOULAKO",
-        prenom: "Camel",
-        autre: {
-            age: 25,
-            sexe: 'Masculin'
-        }
-    }
+    // {
+    //     nom: "DJOULAKO",
+    //     prenom: "Camel",
+    //     autre: {
+    //         age: 25,
+    //         sexe: 'Masculin'
+    //     }
+    // }
 ];
 
 var personne = {
@@ -365,14 +379,14 @@ function superLoader(elementRef) {
 
     // const regexForeach = /#foreach\(["']{0,1}([\w_$-]+)["']{0,1}\)/mg
     // htmlElement.innerHTML = htmlElement.innerHTML.replace(regexForeach, function (match, $1) {
-    //     const locale = match.split('in',2)[0].trim();
-    //     const objet = match.split('in',2)[1].trim();
+    //     const locale = match.split('in',2)[0].trim()
+    //     const objet = match.split('in',2)[1].trim()
         
     //     window[objet].forEach(elt => {
     //         window[locale] = elt
             
     //         delete window[locale]
-    //     });
+    //     })
 
     //     console.log(match)
         
@@ -470,6 +484,39 @@ function superLoader(elementRef) {
             }
             http.open("GET", file+cExtensionFile, true)
             http.send()
+        }
+        
+        if (element.hasAttribute(dRouting)) {
+            const attribute = element.getAttribute(dRouting).trim()
+            const newUrl = window.location.href + '/#/' + attribute
+            console.log(newUrl)
+            element.setAttribute('href', newUrl)
+            
+            element.addEventListener('click', function (event) {
+                event.preventDefault()
+                
+                history.pushState({ foo: 'fake' }, 'newUrl', '#/' + attribute);
+                
+                const http = new XMLHttpRequest();
+                http.onreadystatechange = function() {
+                    if (this.readyState == 4) {
+                        if (this.status == 200) {
+                            const newDocumentElement = htmlElement.querySelector('*[h-outlet]')
+                            newDocumentElement.innerHTML = this.responseText
+                            
+                            newDocumentElement.removeAttribute(dRouting)
+                            superLoader(newDocumentElement)
+                        } else {
+                            newDocumentElement.removeAttribute(dRouting)
+                            newDocumentElement.innerHTML = "<h1><b>"+this.status+"</b></h1><h3><b>"+this.statusText+"</b></h3>"
+                        }
+                    }
+                }
+                http.open("GET", 'views/'+attribute+cExtensionFile, true)
+                http.send()
+
+                element.removeAttribute(dRouting)
+            })
         }
     }
 }

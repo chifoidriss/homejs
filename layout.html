@@ -10,18 +10,14 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="/img/logo.jpg" alt="logo HDjs" height="33" class="d-inline-block align-top">
-                HomePreciousJs
+                <img src="/img/logo.jpg" alt="logo HomeJS" height="33" class="d-inline-block align-top">
+                HomeJS
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="home">Home</a>
@@ -40,10 +36,16 @@
         </div>
     </nav>
 
+    <div class="container">
+        <div class="bg-light mt-3">
+            #yield(nav)
+        </div>
+    </div>
+
     #yield(content)
 
     <script src="/js/directives.names.js"></script>
-    <script src="/js/script.js"></script>
+    <script src="/js/script.js" type="module"></script>
     #yield(js)
 </body>
 </html>
